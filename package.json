@@ -1,0 +1,19 @@
+{
+  "name": "webserver",
+  "version": "1.0.0",
+  "description": "meu primeiro webserver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaovictoralencar/webserver-node.git"
+  },
+  "author": "João Victor de Alencar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaovictoralencar/webserver-node/issues"
+  },
+  "homepage": "https://github.com/joaovictoralencar/webserver-node#readme"
+}
