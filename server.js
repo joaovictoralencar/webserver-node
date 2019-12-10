@@ -20,8 +20,10 @@ function onRequest(req, res) {
 	}
 	fullPath = rootFolder + filename;//o caminho completo do arquivo solicitado pelo usuário
 	extension = filename.substr(filename.lastIndexOf('.') + 1);// captura apenas a extensão do arquivo solicitado pelo usuário
-	fileHandler(fullPath, function (data) {
-		res.writeHead(200, {
+	fileHandler(fullPath, function (data) {//filehandler é importado do arquivo filehandler.js, recebe caminho do arquivo completo, callback sucesso, callback erro	
+		/*O primeiro argumento passado a esse método é o código HTTP (200 quer dizer que a resposta está Ok)
+		O segundo argumento é um objeto com informações do cabeçalho HTTP; no caso, o tipo de conteúdo (Content-Type) e o tamanho dos dados em bytes (Content-length).*/
+		res.writeHead(200, {//writeHead pertence a res
 			'Content-Type': types[extension] || 'text/plain', //define o tipo do conteúdo da resposta
 			'Content-Length': data.length //tamanho do arquivo
 		});
