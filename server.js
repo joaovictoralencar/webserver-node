@@ -3,7 +3,8 @@ var http = require('http'),//Módulo que já vem na biblioteca do node
 	fileHandler = require('./filehandler'),//importa filehandler.js
 	parse = require('url').parse,//separa cada trecho de qualquer URL e retornar um objeto com cada um deles
 	types = config.types,//tipo do arquivo solicitado
-	rootFolder = config.defaultIndex,//pasta raiz qnd n tiver arquivo específico
+	rootFolder = config.rootFolder,//pasta raiz qnd n tiver arquivo específico
+	defaultIndex = config.defaultIndex, //index padrão para o servidor --> index.html,
 	server;
 
 module.exports = server = http.createServer();//isso faz com que o server instanciado possa ser importado em outros arquivos
@@ -24,12 +25,12 @@ function onRequest(req, res) {
 		/*O primeiro argumento passado a esse método é o código HTTP (200 quer dizer que a resposta está Ok)
 		O segundo argumento é um objeto com informações do cabeçalho HTTP; no caso, o tipo de conteúdo (Content-Type) e o tamanho dos dados em bytes (Content-length).*/
 		res.writeHead(200, {//writeHead pertence a res
-			'Content-Type': types[extension] || 'text/plain', //define o tipo do conteúdo da resposta
+			'Content-Type': types[extension] || 'text/plain', //define o tipo do conteúdo da resposta === types.extension
 			'Content-Length': data.length //tamanho do arquivo
 		});
-		res.end(data)
-	}, function (err) {
-		res.writeHead(404);
-		res.end();
+		res.end(data)//encerra a comuniação com o cliente. Vem da api do node
+	}, function (err) {// callback de erro
+		res.writeHead(404);//arquivo não encontrado
+		res.end();//encerra comunicação
 	})
 }
